@@ -12,6 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 	    //Seed 10 records
-	    $news = factory(App\Api\News::class, 10)->create();
+	    $news = factory(App\Api\News::class, 30)->create();
     }
 }
