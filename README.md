@@ -1,4 +1,4 @@
-# news backend and frontend
+# news app backend and frontend
 ```
 Laravel 5.5;
 1 cd news-api 
