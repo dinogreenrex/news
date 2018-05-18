@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Monolog\Logger;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\NewsCollection;
 
 class NewsController extends Controller
 {
@@ -16,11 +17,32 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($sort=null) // accepts title, date
     {
-	    $news = DB::table('news');
+	    $news = collect(DB::table('news')->get());
+	    if($sort){
+		    return $news->sortBy($sort);
+	    }
+	    return $news;
     }
-
+	/**
+	 * Display a listing of the resource sorted by title.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+    public function allRecordsByTitle(){
+	    $news = collect(DB::table('news')->get());
+	    return $news->sortBy('title');
+    }
+	/**
+	 * Display a listing of the resource sorted by creation date.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+		public function allRecordsByDate(){
+			$news = collect(DB::table('news')->get());
+			return $news->sortBy('createdat');
+		}
     /**
      * Show the form for creating a new resource.
      *
