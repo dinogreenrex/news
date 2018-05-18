@@ -5,6 +5,8 @@ import {Col,Row} from 'antd'
 import {App} from './App'
 import {connect} from 'react-redux';
 import {NewsFront} from './Presentational/NewsFront'
+import {NewsPage} from './Presentational/NewsPage'
+import './App.css'
 
 export class RouterMain extends React.Component {
 	constructor(props){
@@ -18,29 +20,19 @@ export class RouterMain extends React.Component {
 					<Route
 						path="/"
 						component={App} />
+
+					<div className="NewsPage">
+						<Route exact
+						       path="/news/:id"
+						       component={NewsPage}
+						/>
+					</div>
 				</div>
 			</Router>
 		)
 	}
 }
 
-export class RoutesBase extends React.Component{
-render(){
-	return (
-		<div>
-			<Row>
-			<Route exact
-			       path="/"
-			       component={NewsFront}
-			/>
-			</Row>
-		</div>
-	)
-}
-}
-export const Routes = withRouter(connect(state => {
-	return {
-	}
-})(RoutesBase));
+export const Routes = withRouter(connect()(RouterMain));
 
 

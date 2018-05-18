@@ -1,0 +1,17 @@
+.NewsPageContainer {
+  display: block;
+  border: 1px solid beige;
+
+}
+.NewsTitle{
+  float: left;
+}
+.NewsDate{
+  float: right;
+}
+.NewsDesc{
+  float: left;
+}
+.clear{
+  clear: both;
+}

@@ -18,7 +18,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-	    return News::all();
+	    $news = DB::table('news');
     }
 
     /**
@@ -64,9 +64,10 @@ class NewsController extends Controller
      * @param  \App\Api\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show($newsId)
+    public function show($newsId,$sort = null)
     {
-	    return News::find($newsId);
+	    $news = News::find($newsId);
+			return $news;
 
     }
 

@@ -3,10 +3,12 @@ import {Col, Row} from 'antd';
 import {Link} from 'react-router-dom';
 import {Routes} from './RouterDirectives'
 import {NewsFront} from './Presentational/NewsFront'
+import {NewsPage} from './Presentational/NewsPage'
+import {withRouter} from  'react-router-dom'
 
 
 
-export class App extends Component {
+class AppBase extends Component {
   constructor(props){
     super(props);
   }
@@ -21,4 +23,4 @@ export class App extends Component {
 
   }
 }
-
+export const App = AppBase

@@ -1,0 +1,13 @@
+.topbar{
+  display: block;
+  padding: 1.5em;
+}
+.login-form{
+
+}
+#NewsFilter{
+  float: left;
+}
+#loginlink{
+  float: right;
+}

@@ -6,8 +6,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 import {Provider} from 'react-redux'
 import {RouterMain} from './RouterDirectives'
-import {DropdownMenu} from './Components/DropdownMenu'
-
+import './Components/DropdownMenu'
+import './Components/DropdownLogin'
 
 
 ReactDOM.render(

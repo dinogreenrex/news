@@ -8,6 +8,9 @@ import 'antd/lib/table/style/css'
 import 'antd/lib/menu/style/css'
 import axios from 'axios'
 import {connect} from 'react-redux';
+import {Link, Route} from 'react-router-dom';
+import './NewsFront.css'
+
 
 class NewsFrontBase extends Component {
 	componentDidMount(){
@@ -25,31 +28,21 @@ class NewsFrontBase extends Component {
 			)
 		})
 	}
+	loadRecord(id){
+		this.props.dispatch(dispatch => {
+			dispatch({type: `LOAD_RECORD`});
+			axios.get(`http://localhost/api/news/${id}`, {
+			}).then(
+				(response) => {
+					dispatch({type: `LOAD_RECORD_SUCCESS`, payload: response.data} );
+				},
+				(error) => {
+					dispatch({type: `LOAD_RECORD_ERROR`, error: error.response.data.message })
+				}
+			)
+		})
+	}
 	render(){
-		const columns = [{
-			title: 'title',
-			dataIndex: 'title',
-			key: 'title',
-		}, {
-			title: 'createdat',
-			dataIndex: 'createdat',
-			key: 'createdat',
-			width: '12%',
-		}, {
-			title: 'Description',
-			dataIndex: 'shortdesc',
-			width: '30%',
-			key: 'shortdesc',
-		},{
-			title: 'Body',
-			dataIndex: 'body',
-			width: '30%',
-			key: 'body',
-		}];
-		const filters = () =>{
-			<div className="filters">
-			</div>
-		};
 
 		return(
 			<div>
@@ -60,15 +53,17 @@ class NewsFrontBase extends Component {
 					pagination={true}
 					renderItem={item => (
 						<List.Item>
-							<Card title={item.title} extra={item.createdat} >
-
-									{item.shortdesc}
-
-							</Card>
+							<div className="NewsPageContainer">
+								<div className="NewsTitle"> <Link to={`/news/${item.id}`} onClick={() => this.loadRecord(item.id)}>{item.title}</Link> </div>
+								<div className="NewsDate">{item.createdat}</div>
+								<div className="clear"></div>
+								<div className="NewsDesc">{item.shortdesc}</div>
+							</div>
 						</List.Item>
 					)}
 				/>
 			</div>
+
 		)
 	}
 }

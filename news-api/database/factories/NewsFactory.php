@@ -7,6 +7,6 @@ $factory->define(App\Api\News::class, function (Faker $faker) {
 		'createdat' => $faker->date(),
 		'title' => $faker->sentence,
 		'shortdesc' => $faker->sentence,
-		'body' => $faker->text,
+		'body' => $faker->text(3000),
 	];
 });
